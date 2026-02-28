@@ -1,0 +1,4 @@
+yfinance==0.2.37
+sec-edgar-downloader==5.0.2
+duckduckgo-search==5.2.1
+click==8.1.7 

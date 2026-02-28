@@ -1,0 +1,135 @@
+# OpenClaw Financial Research Skills
+
+This repository contains financial research skills, scripts, and generated reports designed to work with **[OpenClaw](https://openclaw.ai)** — an AI-powered research and analysis assistant. These skills follow a professional, tiered research workflow inspired by institutional platforms like Bloomberg, FactSet, and Refinitiv, replicated entirely using free, open-source data sources.
+
+---
+
+## Repository Structure
+
+```
+.
+├── financial-services-skills/
+│   ├── SKILL.md                  # Core skill definition and workflow instructions
+│   └── scripts/
+│       ├── stock_data.py         # Tier 1: Market data, news & analyst sentiment (yfinance)
+│       ├── sec_edgar.py          # Tier 2: SEC 10-K / 10-Q filing downloads (EDGAR)
+│       ├── web_search.py         # Tier 3: General open web search (DuckDuckGo)
+│       └── requirements.txt      # Python dependencies
+├── MSFT_Research_Report.md       # Example output: Microsoft
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+Ensure Python 3.9+ is installed, then install the required dependencies:
+
+```bash
+pip install -r financial-services-skills/scripts/requirements.txt
+```
+
+### Individual Script Usage
+
+**Stock Market Data & Analyst Insights (Tier 1)**
+```bash
+python financial-services-skills/scripts/stock_data.py <TICKER>
+
+# Examples:
+python financial-services-skills/scripts/stock_data.py AAPL
+python financial-services-skills/scripts/stock_data.py SHOP.TO
+```
+
+**SEC EDGAR Filings Downloader (Tier 2)**
+```bash
+python financial-services-skills/scripts/sec_edgar.py <TICKER> --email your@email.com --company-name "Your Name"
+
+# Example:
+python financial-services-skills/scripts/sec_edgar.py MSFT --email research@example.com --company-name "Research"
+```
+
+**General Web Search (Tier 3)**
+```bash
+python financial-services-skills/scripts/web_search.py <search query>
+
+# Example:
+python financial-services-skills/scripts/web_search.py "impact of AI regulations on big tech"
+```
+
+---
+
+## Using with OpenClaw
+
+This skill is designed to be used with **OpenClaw**. Once installed, you can invoke the financial research workflow using natural language prompts. OpenClaw reads the `SKILL.md` to understand the research process and automatically orchestrates the three-tier workflow.
+
+### Example Prompts
+
+Below are example prompts you can use directly in OpenClaw to trigger the financial research skill:
+
+---
+
+#### 📈 Single-Stock Research
+```
+Research AAPL for me
+```
+```
+Can you perform analysis for TSLA using the skill
+```
+```
+Give me a full financial breakdown of GOOGL
+```
+
+#### 🏦 Sector-Specific Research
+```
+Research the top AI chip companies. Start with NVDA, then AMD.
+```
+```
+Compare MSFT and AMZN for me using the financial research skill
+```
+
+#### 📁 Regulatory Deep-Dive
+```
+Download and summarize the latest 10-K filing for JPM
+```
+```
+What are the key risk factors in Amazon's most recent annual report?
+```
+
+#### 🌐 Open Intelligence / Macro Research
+```
+What are the latest macroeconomic risks facing the Canadian banking sector?
+```
+```
+Search for recent news on Federal Reserve interest rate decisions and their impact on tech stocks
+```
+
+#### 🇨🇦 Canadian Equities & ETFs (TSX)
+```
+Perform analysis for TSE:HHIC using the skill
+```
+```
+Research RY.TO for me
+```
+
+---
+
+## The Research Workflow (SKILL.md)
+
+The skill follows three structured tiers, mirroring professional research platforms:
+
+| Tier | Equivalent | Tool | Purpose |
+|------|-----------|------|---------|
+| 1 | Bloomberg | `stock_data.py` | Live market data, analyst ratings, news |
+| 2 | FactSet / Refinitiv | `sec_edgar.py` | SEC 10-K / 10-Q filings & risk factors |
+| 3 | Open APIs | `web_search.py` | Macro trends, competitor intelligence |
+
+Each research run concludes with a **Final Recommendation Score (out of 10)** with a supporting rationale.
+
+---
+
+## Notes
+
+- **SEC filings** are only available for US-listed companies registered with the SEC. For Canadian or international listings, the workflow automatically skips Tier 2 and relies more heavily on Tier 3 open web intelligence.
+- **Yahoo Finance (yfinance)** rate limits may occasionally be encountered on Tier 1. Wait a few seconds and retry if this occurs.
+- Results are saved as Markdown reports (e.g., `MSFT_Research_Report.md`) in the root directory for easy review.
